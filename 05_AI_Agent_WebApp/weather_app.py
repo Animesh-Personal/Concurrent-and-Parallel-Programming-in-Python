@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from weather_agent import agent
-from utils.agent_utils import invoke_agent
+from utils.agent_utils import invoke_agent, agent
 import uuid
 
 app = Flask(__name__)
@@ -24,6 +23,8 @@ def send_message():
     user_lat = request.form.get('latitude')
     user_lon = request.form.get('longitude')
 
+    # Store the user's location in the session if available, 
+    # One time per session, so that the agent can use it for location-based queries
     if user_lat and user_lon:
         session['user_session'] = {'lat': user_lat, 'lon': user_lon}
     

@@ -7,6 +7,11 @@ load_dotenv()
 
 
 def create_llm() -> ChatOpenAI:
+    """
+    Build and validate the OpenAI chat client used by the app.
+    It reads the required model settings from environment variables
+    and returns a configured LangChain LLM instance.
+    """
     model_name = os.getenv("OPENAI_MODEL_NAME")
     api_key = os.getenv("OPENAI_API_KEY")
     base_url = os.getenv("OPENAI_API_BASE_URL")

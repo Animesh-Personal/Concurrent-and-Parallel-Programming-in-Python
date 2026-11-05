@@ -1,34 +1,42 @@
-# AI Agent
+# Coffee Newsletter Generator
 
-This project uses Python 3.11 and LangChain's OpenAI integration.
+This application searches for recent coffee news with Tavily and uses a
+configured chat model to generate a Markdown newsletter saved as `Article.md`.
 
-## Set up the virtual environment
+## Project structure
 
-In PowerShell, create a virtual environment with Python 3.11:
+- `generate_coffee_newsletter.py` runs the search and newsletter-generation workflow.
+- `config/model_config.py` configures the shared chat model from environment variables.
+- `tavilysearch/` contains the Tavily search configuration, default queries, and search function.
+- `prompt/prompt.txt` contains the newsletter prompt. The `{{SEARCH_RESULTS}}` placeholder is replaced with search results.
+- `requirements.txt` lists the Python dependencies.
 
-```powershell
-py -3.11 -m venv .venv
-```
+## Setup
 
-If PowerShell blocks activation scripts, allow them for the current PowerShell
-session:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-```
-
-Then activate the environment:
+Install the dependencies:
 
 ```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-In VS Code, select `.venv\Scripts\python.exe` as the project interpreter.
-
-After activation, install the project dependencies and run the application:
-
-```powershell
-python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
+Copy `.env_example` to `.env` and set your API credentials and model settings:
+
+```powershell
+Copy-Item .env_example .env
+```
+
+Set these values in `.env`:
+
+- `OPENAI_API_KEY` — API key used by the chat model.
+- `OPENAI_API_BASE_URL` — API base URL for the chat model provider.
+- `OPENAI_MODEL` — model name.
+- `TAVILY_API_KEY` — Tavily API key.
+
+## Run
+
+```powershell
+python generate_coffee_newsletter.py
+```
+
+The generated newsletter is written to `Article.md` in the current working
+directory.

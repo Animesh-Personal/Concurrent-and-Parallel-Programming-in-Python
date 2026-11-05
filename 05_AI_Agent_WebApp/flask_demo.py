@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-from prompts import SYSTEM_PROMPT
 
 app = Flask(__name__)
 
@@ -13,7 +12,7 @@ def another():
 
 @app.route('/send', methods=['POST'])
 def send_message():
-    user_input = request.form['user_input']
+    user_input = request.form['user_message']
     print(f"User input: {user_input}")
     return "Message sent!"
 
