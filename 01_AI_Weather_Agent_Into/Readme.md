@@ -22,6 +22,7 @@ The agent can handle:
 - `weather_agent_live.py` — uses real APIs for weather and location data
 - `tools/tools_mock.py` — static demo tools for testing the agent logic
 - `tools/tools_live.py` — live OpenWeatherMap and IP geolocation integration
+- `server.py` — MCP server that hosts the live weather and location tools
 - `.env` — environment variables for API keys and model configuration
 
 ## Setup
@@ -54,6 +55,10 @@ The mock version returns sample data and is useful for testing the agent workflo
 ```powershell
 python weather_agent_mock.py
 ```
+
+## MCP server
+
+`server.py` exposes the live tools to MCP clients. To call them from MCP Inspector, follow [doc/mcp-inspector.md](doc/mcp-inspector.md).
 
 ## Run the live agent
 

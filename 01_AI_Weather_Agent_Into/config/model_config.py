@@ -36,3 +36,8 @@ def create_llm() -> ChatOpenAI:
         base_url=base_url.strip(),
         api_key=api_key.strip(),
     )
+
+if __name__ == "__main__":
+    llm = create_llm()
+    response = llm.invoke("Explain the weather in simple terms.")
+    print(f"AI Message: {response.content}")    
